@@ -69,13 +69,13 @@ const VIDEOS = [
    preview how it looks.
    ----------------------------------------------------------- */
 const FIREBASE_CONFIG = {
-  // apiKey:            "PASTE-YOUR-API-KEY",
-  // authDomain:        "your-project.firebaseapp.com",
-  // projectId:         "your-project",
-  // storageBucket:     "your-project.appspot.com",
-  // messagingSenderId: "0000000000",
-  // appId:             "1:0000000000:web:abcdef",
-};
+     apiKey: "AIzaSyB-qpQBw2IzQ6eZZ23XXXNsskT_sW6_N3w",
+     authDomain: "nfhs-fbla-forum.firebaseapp.com",
+     projectId: "nfhs-fbla-forum",
+     storageBucket: "nfhs-fbla-forum.firebasestorage.app",
+     messagingSenderId: "196605395161",
+     appId: "1:196605395161:web:75e28f5ec4dd38f47bbec8"
+   };
 
 
 /* ===========================================================
