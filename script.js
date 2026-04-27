@@ -9,14 +9,22 @@
    1) OFFICERS — edit this list each year
    ----------------------------------------------------------- */
 const OFFICERS = [
-  { name: "[Name]",         role: "President" },
-  { name: "[Name]",         role: "Vice President" },
-  { name: "[Name]",         role: "Secretary" },
-  { name: "[Name]",         role: "Treasurer" },
-  { name: "[Name]",         role: "Reporter / Historian" },
-  { name: "[Your Name]",    role: "Webmaster" },
-  { name: "[Name]",         role: "Parliamentarian" },
-  { name: "[Adviser Name]", role: "Chapter Adviser" },
+  { name: "Shreyas Boddani",         role: "President" },
+  { name: "[Name]",         role: "Vice President of Competitive Events" },
+  { name: "[Name]",         role: "Vice President of Chapter Manegment" },
+  { name: "Sreecharan Chintada",         role: "Vice President of Fundraising" },
+  { name: "Ananya Gunti",         role: "Vice President of Public Relations" },
+  { name: "[Name]",         role: "Vice President of Community Service" },
+  { name: "[Name]",         role: "Role" },
+   { name: "Chaitanya Pupeethi",         role: "Webmaster" },
+   { name: "[Name]",         role: "Role" },
+   { name: "[Name]",         role: "Secretary" },
+   { name: "[Name]",         role: "Historian" },
+   { name: "[Name]",         role: "Parlimentarian" },
+   { name: "[Name]",         role: "Treasurer" },
+   { name: "[Name]",         role: "Reporter" },
+  { name: "Phillip Tomes", role: "Chapter Adviser" },
+   { name: "Jen Crummel", role: "Chapter Adviser" },
 ];
 
 
