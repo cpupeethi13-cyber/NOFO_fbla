@@ -146,7 +146,9 @@ function initNav() {
  *      browser. Useful for previewing the design.
  */
 
-let forumMode = "local";
+// Forum mode: "firebase" (live), "blocked" (browser blocked the script),
+// "unconfigured" (FIREBASE_CONFIG empty), or "local" (fallback storage).
+let forumMode = "unconfigured";
 let firestoreDb = null;
 let firestoreFns = null;
 
@@ -167,22 +169,41 @@ async function initForum() {
       firestoreFns  = fsMod;
       forumMode     = "firebase";
     } catch (err) {
-      console.error("Firebase failed to load — falling back to local mode.", err);
-      forumMode = "local";
+      console.error("Firebase failed to load. Likely blocked by the browser or an extension.", err);
+      // The most common cause is an ad/tracker blocker (Brave Shields, uBlock, etc.)
+      // blocking gstatic.com or firestore.googleapis.com.
+      forumMode = "blocked";
     }
+  } else {
+    forumMode = "unconfigured";
   }
 
-  // Inject a banner if running in local mode so the user knows
-  if (forumMode === "local") {
+  // Inject an appropriate banner for non-firebase modes
+  if (forumMode !== "firebase") {
     const warn = document.createElement("div");
     warn.className = "forum-config-warn";
-    warn.innerHTML = `
-      <strong>Forum is in local-preview mode.</strong>
-      Posts you submit here are only visible in your browser.
-      To make this a real forum visible to everyone, follow the
-      Firebase setup steps in <code>README.md</code> and paste your
-      keys into <code>FIREBASE_CONFIG</code> in <code>script.js</code>.
-    `;
+
+    if (forumMode === "blocked") {
+      warn.innerHTML = `
+        <strong>Forum unavailable in this browser.</strong>
+        Your browser or an extension is blocking the forum's connection
+        (this is common with Brave Shields, uBlock Origin, Ghostery, or strict
+        privacy settings). To use the forum, either:
+        <ul style="margin: 10px 0 0 18px; padding: 0;">
+          <li>Lower your shields/blocker for this site, or</li>
+          <li>Open the site in Chrome, Safari, Firefox, or Edge.</li>
+        </ul>
+        Posts you make here will only be saved locally in this browser until then.
+      `;
+    } else {
+      warn.innerHTML = `
+        <strong>Forum is in local-preview mode.</strong>
+        Posts you submit here are only visible in your browser.
+        To make this a real forum visible to everyone, follow the
+        Firebase setup steps in <code>README.md</code> and paste your
+        keys into <code>FIREBASE_CONFIG</code> in <code>script.js</code>.
+      `;
+    }
     list.parentNode.insertBefore(warn, list);
   }
 
