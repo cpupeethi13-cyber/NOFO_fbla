@@ -23,13 +23,12 @@
   <img src="Untitled design.svg" alt="NFHS FBLA logo" class="logo-img" />
   <span class="logo-text">FBLA<span class="logo-dot">.</span></span>
 </a>
-      </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#officers">Officers</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#videos">Videos</a></li>
-        <li><a href="#forum">Forum</a></li>
+        <li><a href="#forum">Messages</a></li>
         <li><a href="#resources">Resources</a></li>
       </ul>
       <a href="https://drive.google.com/file/d/1SOVueBlenbhKIK2sf8H0Vi0gcN1DNu_j/view?usp=drive_link" target="_blank" rel="noopener" class="nav-cta">Join us →</a>
@@ -168,29 +167,74 @@
     </div>
   </section>
 
-  <!-- ============ FORUM ============ -->
-  <section class="section forum" id="forum">
+  <!-- ============ MESSAGES (private DMs with officers) ============ -->
+  <section class="section messages" id="forum">
     <div class="section-head">
-      <span class="eyebrow">05 — Forum</span>
-      <h2 class="section-title">Got a question? Ask it.</h2>
-      <p class="section-sub">No accounts, no sign-ups. Just type your name (or stay anonymous) and post. Be cool — moderators check in.</p>
+      <span class="eyebrow">05 — Messages</span>
+      <h2 class="section-title">Talk to your officers.</h2>
+      <p class="section-sub">A private conversation between you and the officer team. Questions, suggestions, concerns — only you and the officers see your messages.</p>
     </div>
 
-    <div class="forum-wrap">
-      <form class="forum-form" id="forumForm">
-        <div class="forum-row">
-          <input type="text" id="forumName" placeholder="Your name (or 'Anonymous')" maxlength="40" />
-          <input type="text" id="forumTitle" placeholder="Question title" maxlength="100" required />
-        </div>
-        <textarea id="forumBody" placeholder="Ask your question — competition advice, meeting times, dues, anything." maxlength="1500" required rows="4"></textarea>
-        <div class="forum-actions">
-          <span class="forum-hint" id="forumHint">Posts are public. Don't share private info.</span>
-          <button type="submit" class="btn btn-primary" id="forumSubmit">Post question</button>
-        </div>
-      </form>
+    <!-- Signed-out state -->
+    <div class="messages-auth" id="messagesAuth">
+      <div class="auth-card">
+        <h3 class="auth-title" id="authTitle">Sign in to start a conversation</h3>
+        <p class="auth-sub" id="authSub">Use the email you registered with. New here? Switch to "Create account".</p>
 
-      <div class="forum-list" id="forumList">
-        <div class="forum-loading">Loading the forum…</div>
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-mode="signin" id="tabSignin">Sign in</button>
+          <button class="auth-tab" data-mode="signup" id="tabSignup">Create account</button>
+        </div>
+
+        <form class="auth-form" id="authForm">
+          <input type="text" id="authName" placeholder="Your full name" autocomplete="name" style="display:none" />
+          <input type="email" id="authEmail" placeholder="Email" autocomplete="email" required />
+          <input type="password" id="authPassword" placeholder="Password (6+ characters)" autocomplete="current-password" required minlength="6" />
+          <div class="auth-actions">
+            <span class="auth-hint" id="authHint"></span>
+            <button type="submit" class="btn btn-primary" id="authSubmit">Sign in</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Signed-in MEMBER state: see only their own thread -->
+    <div class="messages-member hidden" id="messagesMember">
+      <div class="thread-head">
+        <div>
+          <h3 class="thread-title">Your conversation with officers</h3>
+          <p class="thread-sub">Signed in as <strong id="memberName">…</strong></p>
+        </div>
+        <button class="btn btn-ghost-dark" id="memberSignOut">Sign out</button>
+      </div>
+
+      <div class="thread-messages" id="memberThread">
+        <div class="thread-loading">Loading messages…</div>
+      </div>
+
+      <form class="thread-composer" id="memberComposer">
+        <textarea id="memberMessage" placeholder="Type a message to the officers…" maxlength="1500" required rows="2"></textarea>
+        <button type="submit" class="btn btn-primary" id="memberSendBtn">Send</button>
+      </form>
+    </div>
+
+    <!-- Signed-in OFFICER state: inbox of every member's thread -->
+    <div class="messages-officer hidden" id="messagesOfficer">
+      <div class="thread-head">
+        <div>
+          <h3 class="thread-title">Officer inbox</h3>
+          <p class="thread-sub">Signed in as <strong id="officerName">…</strong> · <span class="officer-badge">Officer</span></p>
+        </div>
+        <button class="btn btn-ghost-dark" id="officerSignOut">Sign out</button>
+      </div>
+
+      <div class="officer-layout">
+        <aside class="officer-inbox" id="officerInbox">
+          <div class="thread-loading">Loading inbox…</div>
+        </aside>
+        <div class="officer-active" id="officerActive">
+          <div class="officer-empty">Pick a member from the inbox to view their thread.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -244,7 +288,6 @@
       <p class="join-note">Adviser: <strong>Jen Crummel</strong> · Room <strong>[840]</strong> · <a href="mailto:jcrummel@forsyth.k12.ga.us">email</a></p>
       <p class="join-note">Adviser: <strong>Jessie Tomes</strong> · Room <strong>[848]</strong> · <a href="mailto:jtomes@forsyth.k12.ga.us">email</a></p>
     </div>
-    </div>
   </section>
 
   <!-- ============ FOOTER ============ -->
@@ -259,7 +302,7 @@
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#events">Events</a></li>
-          <li><a href="#forum">Forum</a></li>
+          <li><a href="#forum">Messages</a></li>
           <li><a href="#resources">Resources</a></li>
         </ul>
       </div>
